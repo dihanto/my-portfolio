@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navbar from "./navbar";
 
 export default function Header() {
   const [isClicked, setIsClicked] = useState(false);
@@ -37,6 +38,7 @@ export default function Header() {
           ></span>
         </button>
       </div>
+      <Navbar isClick={isClicked} />
     </div>
   );
 }
