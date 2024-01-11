@@ -10,8 +10,8 @@ export default function Header() {
 
   return (
     <div className="container">
-      <div className="px-4">
-        <a href="#" className="font-bold text-lg text-slate-900 py-5">
+      <div className="md:mt-7 ml-2  md:ml-11">
+        <a href="#" className="font-bold text-lg text-slate-900 ">
           Dihanto
         </a>
       </div>
