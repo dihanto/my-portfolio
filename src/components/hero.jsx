@@ -1,4 +1,4 @@
-import hero from "../dist/hero.png";
+import hero from "../public/hero.png";
 export default function Hero() {
   return (
     <>
