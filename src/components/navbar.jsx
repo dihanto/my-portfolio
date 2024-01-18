@@ -1,6 +1,19 @@
 // eslint-disable-next-line react/prop-types
 export default function Navbar({ isClick }) {
-  console.log(isClick);
+  const handleSmoothScroll = (event) => {
+    event.preventDefault();
+
+    const targetId = event.currentTarget.getAttribute("href").substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div
       className={`${
@@ -26,8 +39,9 @@ export default function Navbar({ isClick }) {
         </li>
         <li className="group">
           <a
-            href="#"
+            href="#project"
             className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300"
+            onClick={handleSmoothScroll}
           >
             Project
           </a>
