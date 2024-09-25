@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-export default function Navbar({ isClick }) {
+export default function Navbar({ isClick, onToggleDarkMode, isDarkMode }) {
   const handleSmoothScroll = (event) => {
     event.preventDefault();
 
@@ -18,13 +18,13 @@ export default function Navbar({ isClick }) {
     <div
       className={`${
         isClick ? "block" : "hidden"
-      } absolute py-5 bg-white shadow-lg rounded-lg max-w-[230px] right-4 top-12 lg:block lg:right-9 lg:top-4 lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none z-10 transition duration-200 ease-in-out`}
+      } absolute shadow-lg rounded-lg max-w-[230px] right-4 top-12 lg:block lg:right-9 lg:top-4 lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none z-10 transition duration-200 ease-in-out`}
     >
-      <ul className="block md:flex font-semibold">
+      <ul className="block md:flex font-semibold text-slate-800 dark:bg-slate-800">
         <li className="group">
           <a
             href="#"
-            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300"
+            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300 dark:text-white dark:group-hover:text-sky-200" 
           >
             Home
           </a>
@@ -32,7 +32,7 @@ export default function Navbar({ isClick }) {
         <li className="group">
           <a
             href="#"
-            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300"
+            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300  dark:text-white dark:group-hover:text-sky-200"
           >
             Profile
           </a>
@@ -40,7 +40,7 @@ export default function Navbar({ isClick }) {
         <li className="group">
           <a
             href="#project"
-            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300"
+            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300  dark:text-white dark:group-hover:text-sky-200"
             onClick={handleSmoothScroll}
           >
             Project
@@ -49,10 +49,18 @@ export default function Navbar({ isClick }) {
         <li className="group">
           <a
             href="#"
-            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300"
+            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300  dark:text-white dark:group-hover:text-sky-200"
           >
             Contact
           </a>
+        </li>
+        <li className="group">
+          <button
+            className="text-sm text-slate-800 py-2 mx-8 flex group-hover:text-sky-300  dark:text-white dark:group-hover:text-sky-200"
+            onClick={onToggleDarkMode}
+          >
+            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          </button>
         </li>
       </ul>
     </div>

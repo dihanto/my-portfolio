@@ -1,8 +1,8 @@
 export default function Skill() {
   return (
-    <div className="my-1 mx-5">
-      <h1 className="text-3xl font-bold mb-4">My Coding Journey</h1>
-      <p className="text-base md:text-lg font-medium">
+    <div className="py-1 px-5 bg-slate-50 dark:bg-slate-800">
+      <h1 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">My Coding Journey</h1>
+      <p className="text-base md:text-lg font-medium text-slate-900 dark:text-white">
         I embarked on my programming journey in early 2023, starting from
         scratch. Initially focusing on backend development, I delved into the
         intricacies of the Go programming language. Subsequently, I expanded my
