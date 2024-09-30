@@ -1,76 +1,81 @@
-import hero from "../public/hero.png";
-import project1 from "../public/40626.jpg";
-import project2 from "../public/5643919.jpg";
-import project3 from "../public/7533464.jpg";
+import React, { useEffect, useState } from 'react';
+import hero from '../public/img/hero.png';
+
 export default function Hero() {
+  const [toRotate] = useState(["Web Developer", "Full-stack Developer", "Tech Enthusiast"]);
+  const [txt, setTxt] = useState('');
+  const [loopNum, setLoopNum] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(200);
+  const period = 1300;
+
+  useEffect(() => {
+    const tick = () => {
+      let i = loopNum % toRotate.length; 
+      let fullTxt = toRotate[i];
+
+      setTxt((prevTxt) => {
+        return isDeleting
+          ? fullTxt.substring(0, prevTxt.length - 1)
+          : fullTxt.substring(0, prevTxt.length + 1);
+      });
+
+      if (isDeleting) {
+        setTypingSpeed(100); 
+      } else {
+        setTypingSpeed(200); 
+      }
+
+      if (!isDeleting && txt === fullTxt) {
+        setTimeout(() => setIsDeleting(true), period); 
+      }
+
+      if (isDeleting && txt === '') {
+        setIsDeleting(false); 
+        setLoopNum(loopNum + 1); 
+      }
+    };
+
+    const interval = setInterval(() => {
+      tick();
+    }, typingSpeed);
+
+    return () => clearInterval(interval);
+  }, [txt, isDeleting, loopNum, toRotate, typingSpeed]);
+
   return (
     <>
-      <div className="pt-6 lg:pt-10 dark:bg-slate-800 bg-slate-50">
-        <div className="container">
-          <div className="flex flex-wrap md:flex-nowrap">
-            <div className="w-full self-end relative md:w-[60%] md:order-2 font-semibold">
-              <p className="bg-sky-400 text-white z-20 w-40 rounded-full text-xs text-center right-2 top-32 px-3 py-1.5 absolute shadow-sm md:right-56 md:top-60">
-                Go{" "}
-              </p>
-              <p className="bg-blue-500 text-white z-20 w-44 rounded-full text-xs text-center left-1 top-56 px-3 py-1.5 absolute shadow-sm md:left-44 md:top-96">
-                React{" "}
-              </p>
-              <p className="bg-yellow-400 text-white z-20 w-48 rounded-full text-xs text-center left-44 top-72 px-3 py-1.5 absolute shadow-sm md:left-[440px] md:top-[410px]">
-                Javascript{" "}
-              </p>
-              <img
-                src={hero}
-                alt="hero"
-                className="max-w-full mx-auto scale-75 z-2"
-              />
-            </div>
-            <div className="w-full self-center md:ml-8 px-4 md:w-[40%] md:mt-64">
-              <h1 className="text-3xl font-bold md:text-5xl dark:text-white text-slate-900">
-                Coding for life
-              </h1>
-              <p className="text-sm text-slate-600 py-4 dark:text-white text-slate-900">
-                Passionate coder fluent in Go, React, and JavaScript.
-                Transforming innovative ideas into seamless, functional
-                solutions. Let my code speak for itself.
-              </p>
-              <div className="ml-[196px] md:ml-4 flex relative text-center">
-                <a
-                  href="#"
-                  className="text-sm font-semibold text-slate-900 bg-gradient-to-r from-sky-400 to-sky-200 dark:from:sky-600 dark:to-sky-400 rounded-full pl-4 pr-14 py-[10px] my-3"
-                >
-                  Hire Me!
-                  <div className="w-9 h-9 rounded-full z-10 bg-slate-700 dark:bg-slate-100 my-auto top-[14.5px] left-[88px] absolute">
-                    <span className="text-white dark:text-slate-900 absolute bottom-2 left-3">
-                      →
-                    </span>
-                  </div>
-                </a>
-              </div>
-              <div className="flex mb-20 relative md:ml-1 ml-44">
-                <img
-                  src={project1}
-                  alt="javascript"
-                  className="w-7 h-7 rounded-full border border-white absolute left-5"
-                />
-                <img
-                  src={project2}
-                  alt="javascript"
-                  className="w-7 h-7 rounded-full border border-white absolute left-10 z-10"
-                />
-                <img
-                  src={project3}
-                  alt="javascript"
-                  className="w-7 h-7 rounded-full border border-white absolute left-[60px] z-20"
-                />
-                <a href="#" className="absolute left-[90px] mx-0">
-                  <span className="text-base font-semibold ml-3 text-slate-900 dark:text-white">10+</span>
-                  <span className="text-base text-slate-600 dark:text-white">project</span>
-                </a>
-              </div>
-            </div>
+      <main className="flex flex-col-reverse gap-8 items-center md:flex-row md:gap-16 md:justify-center min-h-[65vh] md:min-h-[100vh] backdrop-blur-md bg-slate-100 dark:bg-[#121212]">
+        <div className="space-y-2 text-center md:text-left px-10">
+          <p className="text-skay-800 dark:text-sky-200 fade-in-from-left">Hello World, I'm</p>
+          <h1 className="text-4xl font-bold md:text-5xl text:slate-800 dark:text-white fadein-up">
+            Dihanto
+          </h1>
+          <div className="py-2">
+            <h1
+              className="typewrite text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-sky-500 dark:from-slate-100 dark:to-sky-500 md:text-2xl fadein-up"
+            >
+              <span className="wrap">{txt}</span>
+            </h1>
           </div>
+          <p className="text-slate-800 dark:text-white pr-4 fade-in-from-left">
+            Welcome to My personal website. <span className="wave">👋🏼</span>
+          </p>
+          <br />
         </div>
-      </div>
+        <div className="flex justify-center md:justify-start fadein-right">
+          <img
+            alt="avatar"
+            fetchpriority="high"
+            width="300"
+            height="300"
+            decoding="async"
+            data-nimg="1"
+            className="w-10/12 md:h-auto rounded-full border-4 border-sky-400 pict"
+            src={hero}
+          />
+        </div>
+      </main>
     </>
   );
 }
