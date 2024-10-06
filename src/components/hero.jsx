@@ -44,7 +44,7 @@ export default function Hero() {
   }, [txt, isDeleting, loopNum, toRotate, typingSpeed]);
 
   return (
-    <>
+    <div className='flex items-center justify-center min-h-screen'>
       <main className="flex flex-col-reverse gap-8 items-center md:flex-row md:gap-16 md:justify-center min-h-[65vh] md:min-h-[100vh] backdrop-blur-md bg-slate-100 dark:bg-[#121212]">
         <div className="space-y-2 text-center md:text-left px-10">
           <p className="text-skay-800 dark:text-sky-200 fade-in-from-left">Hello World, I'm</p>
@@ -76,6 +76,6 @@ export default function Hero() {
           />
         </div>
       </main>
-    </>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import Project from "./components/project";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Profile from "./components/profile";
+import NavbarMobile from "./components/navbar-mobile";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -13,7 +14,6 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("darkMode") != null) {
       const isDarkModePref = localStorage.getItem("darkMode") === "true";
-      console.log(isDarkModePref);
       if (isDarkModePref == false) {
         setIsDarkMode(false);
         document.documentElement.classList.remove("dark");
@@ -59,6 +59,7 @@ function App() {
         <Route path="/about" element={<Profile />} />
         <Route path="/project" element={<Project />} />
       </Routes>
+      <NavbarMobile />
     </Router>
   );
 }
