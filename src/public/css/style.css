@@ -138,3 +138,6 @@ body {
 .fade-500 {
   animation-delay: 500ms;
 }
+.button:active::after{
+  background-color: transparent !important;
+}
